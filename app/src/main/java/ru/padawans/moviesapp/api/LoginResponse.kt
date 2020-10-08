@@ -1,4 +1,3 @@
 package ru.padawans.moviesapp.api
 
-class LoginResponse {
-}
+data class LoginResponse (val success:Boolean,val status_code:Int,val status_message:String)
