@@ -1,6 +1,7 @@
 package ru.padawans.moviesapp
 
 import android.app.Application
+import android.content.Intent
 import ru.padawans.moviesapp.di.AppComponent
 import ru.padawans.moviesapp.di.AppModule
 import ru.padawans.moviesapp.di.DaggerAppComponent
@@ -19,6 +20,7 @@ class MovieApplication: Application() {
             .appModule(AppModule(this))
             .networkModule(NetworkModule())
             .build()
+
 
     }
 }

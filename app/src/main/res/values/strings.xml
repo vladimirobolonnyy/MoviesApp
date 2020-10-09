@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="guest">GUEST</string>
+    <string name="welcome_to_movieapp">Welcome to MovieApp</string>
+    <string name="name">Name</string>
 </resources>
