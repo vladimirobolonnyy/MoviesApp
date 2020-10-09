@@ -1,6 +1,7 @@
-package ru.padawans.moviesapp.data.model.upcoming.Dto
+package ru.padawans.moviesapp.data.model.trending.Dto
 
 import com.google.gson.annotations.SerializedName
+import ru.padawans.moviesapp.data.model.trending.ResultsTrending
 import ru.padawans.moviesapp.data.model.upcoming.Results
 
 
@@ -21,9 +22,9 @@ class ResultsDto (
 	@SerializedName("overview") val overview : String?,
 	@SerializedName("release_date") val releaseDate : String?
 ){
-	fun convert():Results{
+	fun convert():ResultsTrending{
 
-			return Results(popularity!!, voteCount!!, video!!, posterPath!!, id!!, adult!!,
+			return ResultsTrending(popularity!!, voteCount!!, video!!, posterPath!!, id!!, adult!!,
 				backdropPath!!, originalLanguage!!, originalTitle!!,
 				genreIds!!, title!!, voteAverage!!, overview!!, releaseDate!!)
 

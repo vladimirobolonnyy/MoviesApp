@@ -10,6 +10,6 @@ class DatesDto (
 	@SerializedName("minimum") val minimum : String?
 ){
 	fun converter():Dates{
-		return Dates(maximum, minimum)
+		return Dates(maximum!!, minimum!!)
 	}
  }

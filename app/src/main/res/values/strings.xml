@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="now_playing_movies">Now playing movies</string>
+    <string name="trending_movies">Trending movies</string>
+    <string name="upcoming_movies">Upcoming movies</string>
 </resources>

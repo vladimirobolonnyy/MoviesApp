@@ -8,19 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.padawans.moviesapp.BuildConfig
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.upcoming.Dto.ResultsDto
 import ru.padawans.moviesapp.data.model.upcoming.Results
 
-class UpcomingMovieAdapter: RecyclerView.Adapter<UpcomingMovieAdapter.UpcomingMovieViewHolder>() {
+class UpcomingMoviesAdapter: RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingMoviesViewHolder>() {
 
-    private var results:MutableList<Results> = ArrayList()
+    private var results:MutableList<Results> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMoviesViewHolder {
         val inflater= LayoutInflater.from(parent.context)
-        return UpcomingMovieViewHolder(inflater,parent)
+        return UpcomingMoviesViewHolder(inflater,parent)
     }
 
-    override fun onBindViewHolder(holder: UpcomingMovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UpcomingMoviesViewHolder, position: Int) {
        holder.bind(results[position])
     }
 
@@ -36,7 +35,7 @@ class UpcomingMovieAdapter: RecyclerView.Adapter<UpcomingMovieAdapter.UpcomingMo
         notifyDataSetChanged()
     }
 
-    class  UpcomingMovieViewHolder(inflater: LayoutInflater,parent: ViewGroup):RecyclerView.ViewHolder(inflater.inflate(
+    class  UpcomingMoviesViewHolder(inflater: LayoutInflater, parent: ViewGroup):RecyclerView.ViewHolder(inflater.inflate(
         R.layout.upcoming_movie_item,parent,false)){
 
         private val text:TextView = itemView.findViewById(R.id.upcoming_recycler_tv)
@@ -45,11 +44,9 @@ class UpcomingMovieAdapter: RecyclerView.Adapter<UpcomingMovieAdapter.UpcomingMo
         fun bind(result: Results){
             text.text = result.title
             // w300 размер изображения https://developers.themoviedb.org/3/getting-started/images
-            val imageUrl:String = BuildConfig.BASE_IMG_URL + "w300"+ result.poster_path
+            val imageUrl:String = BuildConfig.BASE_IMG_URL + "w780"+ result.posterPath
             Picasso.get()
                 .load(imageUrl)
-                .resize(100, 200)
-                .centerCrop()
                 .into(image)
         }
     }

@@ -1,8 +1,8 @@
-package ru.padawans.moviesapp.data.model.upcoming
+package ru.padawans.moviesapp.data.model.trending
 
 import com.google.gson.annotations.SerializedName
 
-data class Results(
+data class ResultsTrending(
     val popularity: Double,
     val voteCount: Int,
     val video: Boolean,
