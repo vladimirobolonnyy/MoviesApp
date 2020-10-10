@@ -2,6 +2,7 @@ package ru.padawans.moviesapp.api
 
 import retrofit2.http.GET
 import retrofit2.http.Query
+import ru.padawans.moviesapp.api.repository.TokenResponse
 
 interface UserGuestInterface {
 

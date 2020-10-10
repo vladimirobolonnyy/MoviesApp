@@ -1,7 +1,6 @@
-package ru.padawans.moviesapp.api
+package ru.padawans.moviesapp.api.repository
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.upcoming.Results
 
 data class TokenResponse(
 @SerializedName("success") val success : Boolean,

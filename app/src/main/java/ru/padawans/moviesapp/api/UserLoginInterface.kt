@@ -1,6 +1,7 @@
 package ru.padawans.moviesapp.api
 
 import retrofit2.http.*
+import ru.padawans.moviesapp.api.repository.TokenResponse
 
 
 interface UserLoginInterface {
@@ -10,8 +11,12 @@ interface UserLoginInterface {
         @Query("api_key") apiKey:String)
             : retrofit2.Call<TokenResponse>
 
+    @POST("/3/authentication/session/new")
+    fun getSession(
+        @Query("request_token") requestToken:String)
+            : retrofit2.Call<AuthenticationResponse>
+
     @POST("/3/authentication/token/validate_with_login?")
-    @FormUrlEncoded
     fun registerUser(
         @Query("api_key") apiKey:String,
         @Body info: User
