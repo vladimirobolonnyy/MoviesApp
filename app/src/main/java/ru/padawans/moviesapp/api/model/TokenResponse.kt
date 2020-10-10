@@ -1,4 +1,4 @@
-package ru.padawans.moviesapp.api.repository
+package ru.padawans.moviesapp.api.model
 
 import com.google.gson.annotations.SerializedName
 

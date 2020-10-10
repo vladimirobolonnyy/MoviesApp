@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import ru.padawans.moviesapp.R
 
-class SessionManager (context: Context) {
+class SessionManager_UserToken (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
 
     companion object {
-        const val USER_TOKEN = "user_token"
+        var USER_TOKEN = "user_token"
     }
 
     /**

@@ -4,4 +4,8 @@
     <string name="guest">GUEST</string>
     <string name="welcome_to_movieapp">Welcome to MovieApp</string>
     <string name="name">Name</string>
+    <string name="sign_in">Sign In</string>
+    <string name="your_username">Your username</string>
+    <string name="your_password">Your password</string>
+
 </resources>

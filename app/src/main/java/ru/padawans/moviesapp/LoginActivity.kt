@@ -1,6 +1,6 @@
 package ru.padawans.moviesapp
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,52 +11,96 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.padawans.moviesapp.api.*
-import ru.padawans.moviesapp.api.SessionManager.Companion.USER_TOKEN
-import ru.padawans.moviesapp.api.repository.TMDB_create_session
-import ru.padawans.moviesapp.api.repository.TokenResponse
+import ru.padawans.moviesapp.api.model.AuthenticationResponse
+import ru.padawans.moviesapp.api.model.LoginResponse
+import ru.padawans.moviesapp.api.model.TokenResponse
+import ru.padawans.moviesapp.api.model.User
+import ru.padawans.moviesapp.ui.MainActivity
 
 
 class LoginActivity : AppCompatActivity() {
 
-    public var values :String = ""
-    public var token :String = ""
-    public lateinit var sessionManager: SessionManager
+    private var values :String = ""
+    private var flag :Boolean = false
+    private var name :String = ""
+    public lateinit var sessionManagerUserToken: SessionManager_UserToken
+    public lateinit var sessionManagerSessionId: SessionManager_SessionID
     public lateinit var USER_TOKEN: String
-    private lateinit var session :TMDB_create_session
+    public lateinit var SESSION_ID: String
 
-    @SuppressLint("WrongViewCast")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        getToken()
-        //values = session.userApi.toString()
-        //token = session.userApi.getResponse(BuildConfig.API_KEY).toString()
-
-
         val username = findViewById<EditText>(R.id.editTextTextPersonName)
         val pass = findViewById<EditText>(R.id.editTextTextPassword)
 
+        getToken()
+        
+        sessionManagerUserToken = SessionManager_UserToken(this)
+        sessionManagerSessionId = SessionManager_SessionID(this)
+
+        name = username.text.toString()
 
         val button_guest_session = findViewById<Button>(R.id.guest_button)
         button_guest_session?.setOnClickListener()
         {
-            //Toast.makeText(this, values, Toast.LENGTH_LONG).show()
-            Toast.makeText(this,USER_TOKEN, Toast.LENGTH_LONG).show()
+            getSession()
+            Toast.makeText(this,USER_TOKEN + "   " +sessionManagerSessionId.fetchSessionID().toString(), Toast.LENGTH_LONG).show()
 
         }
 
-        val button_guest_signUP = findViewById<Button>(R.id.sign_up)
-        button_guest_signUP?.setOnClickListener()
+        val button_user_signIN = findViewById<Button>(R.id.sign_up)
+        button_user_signIN?.setOnClickListener()
         {
             //Toast.makeText(this, values, Toast.LENGTH_LONG).show()
-            Toast.makeText(this,username.text.toString()+" - " +USER_TOKEN+" - " +pass.text.toString(), Toast.LENGTH_LONG).show()
-            signUp(username.text.toString(),pass.text.toString(),USER_TOKEN)}
-
+            signIN(username.text.toString(),pass.text.toString(),USER_TOKEN)
+            }
     }
 
-    private fun signUp(username: String, password: String, request_token: String) {
-        getToken()
+
+    private fun getSession()
+    {
+        val retIn =
+            RetrofitHTTPconnection.getRetrofitInstance().create(UserGuestInterface::class.java)
+
+        retIn.getSession(BuildConfig.API_KEY)
+            .enqueue(object : Callback<AuthenticationResponse> {
+
+                override fun onFailure(call: Call<AuthenticationResponse>, t: Throwable) {
+                    Log.v("SESSION", "Session Failed");
+                }
+
+                override fun onResponse(
+                    call: Call<AuthenticationResponse>,
+                    response: Response<AuthenticationResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val v= response.body()?.session_id.toString()
+                        sessionManagerSessionId.saveAuthSessionId(v)
+                        Toast.makeText(this@LoginActivity,USER_TOKEN + "   " +sessionManagerSessionId.fetchSessionID().toString(), Toast.LENGTH_LONG).show()
+                        Log.v("SESSION ID", v);
+                        val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                        startActivity(intent)
+
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Please enter your username and password",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.v("WRONG RESPONSE", response.code().toString());
+                        Log.v("WRONG RESPONSE", response.body().toString());
+                        Log.v("API", BuildConfig.API_KEY.toString());
+                    }
+                }
+            })
+    }
+
+
+    private fun signIN(username: String, password: String, request_token: String) {
+
         val retIn =
             RetrofitHTTPconnection.getRetrofitInstance().create(UserLoginInterface::class.java)
         val signInInfo = User(username, password, request_token)
@@ -73,9 +117,17 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<LoginResponse>
                 ) {
                     if (response.isSuccessful) {
+                        val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                        startActivity(intent)
+                        flag=true
                         Log.v("RESPONSE REG", "Registration Passed");
                         Log.v("RESPONSE REG", response.body().toString());
                     } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Please enter your username and password",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         Log.v("WRONG RESPONSE", response.code().toString());
                         Log.v("WRONG RESPONSE", response.body().toString());
                         Log.v("API", BuildConfig.API_KEY.toString());
@@ -86,9 +138,9 @@ class LoginActivity : AppCompatActivity() {
 
     public fun getToken()
     {
-        sessionManager = SessionManager(this)
+
         val retIn =
-            RetrofitHTTPconnection.getRetrofitInstance().create(UserGuestInterface::class.java)
+            RetrofitHTTPconnection.getRetrofitInstance().create(UserLoginInterface::class.java)
 
         retIn.getResponse(BuildConfig.API_KEY).enqueue(object :  retrofit2.Callback<TokenResponse> {
 
@@ -98,11 +150,10 @@ class LoginActivity : AppCompatActivity() {
             ) {
                 if (response.code() == 200) {
                     values = response.body()?.convert()?.request_token.toString()
-                    sessionManager.saveAuthToken(values)
-                    Log.v("RESPONSE TOKEN", values);
-                    USER_TOKEN = sessionManager.fetchAuthToken().toString()
-                    Log.d("DDDDDDDDDDDDDDDDDD", USER_TOKEN);
-                    Log.v("API", BuildConfig.API_KEY.toString());
+                    sessionManagerUserToken.saveAuthToken(values)
+                    //Log.v("RESPONSE TOKEN", values);
+                    USER_TOKEN = sessionManagerUserToken.fetchAuthToken().toString()
+
                 }
             }
 

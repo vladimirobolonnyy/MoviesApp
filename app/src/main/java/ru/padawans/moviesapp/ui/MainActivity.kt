@@ -14,13 +14,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this@MainActivity,LoginActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this@MainActivity,LoginActivity::class.java)
+//        startActivity(intent)
 
-//        val mainFragment:MainFragment = MainFragment()
-//        val fragmentTransaction:FragmentTransaction = supportFragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.container,mainFragment)
-//        fragmentTransaction.commit()
+        val mainFragment:MainFragment = MainFragment()
+        val fragmentTransaction:FragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container,mainFragment)
+        fragmentTransaction.commit()
 
 
     }

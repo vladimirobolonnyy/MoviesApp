@@ -1,7 +1,10 @@
 package ru.padawans.moviesapp.api
 
 import retrofit2.http.*
-import ru.padawans.moviesapp.api.repository.TokenResponse
+import ru.padawans.moviesapp.api.model.AuthenticationResponse
+import ru.padawans.moviesapp.api.model.LoginResponse
+import ru.padawans.moviesapp.api.model.TokenResponse
+import ru.padawans.moviesapp.api.model.User
 
 
 interface UserLoginInterface {
