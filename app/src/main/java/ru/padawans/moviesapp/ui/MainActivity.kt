@@ -1,20 +1,59 @@
 package ru.padawans.moviesapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentTransaction
-import ru.padawans.moviesapp.MovieApplication
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.ui.view.MainFragment
+import ru.padawans.moviesapp.ui.view.SearchFragment
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var toolbar: Toolbar
+    lateinit var bottomNavView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initToolbar()
+        initBottomNavView()
+    }
 
-        val mainFragment:MainFragment = MainFragment()
-        val fragmentTransaction:FragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.container,mainFragment)
-        fragmentTransaction.commit()
+    fun initBottomNavView() {
+        bottomNavView = bottom_nav_view
+        bottomNavView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.Main -> {
+//replaceMainFragment
+                    true
+                }
+                R.id.Search -> {
+                    replaceFragment(SearchFragment())
+                    true
+                }
+                R.id.Account -> {
+//replaceAccountFragment
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
+
+    fun initToolbar() {
+        toolbar = main_toolBar
+        setSupportActionBar(toolbar)
+    }
+
+    fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.container,
+                fragment
+            ).commit()
     }
 }
