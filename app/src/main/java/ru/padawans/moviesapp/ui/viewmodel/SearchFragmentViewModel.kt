@@ -1,34 +1,31 @@
 package ru.padawans.moviesapp.ui.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import kotlinx.coroutines.flow.Flow
 import ru.padawans.moviesapp.data.model.search.Movie
 import ru.padawans.moviesapp.data.repository.mainFragment.SearchRepositoryImpl
 
-class SearchFragmentViewModel(app: Application): AndroidViewModel(app){
+class SearchFragmentViewModel : ViewModel() {
 
-    val liveData= MutableLiveData<List<Movie>>()
-    val repository= SearchRepositoryImpl()
+    private var currentQueryValue: String? = null
+    private var currentSearchResult: Flow<PagingData<Movie>>? = null
 
-    private val disposable= CompositeDisposable()
+    val liveData = MutableLiveData<List<Movie>>()
+    val repository = SearchRepositoryImpl()
 
-    fun movieListSearch(query:String){
-        disposable.add(
-            repository.movieListSearch(query)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({s->
-                    liveData.value=s.results
-                },{throwable->
-                    liveData.value=emptyList()
-                })
-        )
-    }
-
-    override fun onCleared(){
-        super.onCleared()
-        disposable.dispose()
+    fun movieListSearch(query: String): Flow<PagingData<Movie>> {
+        val lastResult = currentSearchResult
+        if (query == currentQueryValue && lastResult != null) {
+            return lastResult
+        }
+        currentQueryValue = query
+        val newResult: Flow<PagingData<Movie>> = repository.movieListSearch(query)
+            .cachedIn(viewModelScope)
+        currentSearchResult = newResult
+        return newResult
     }
 }

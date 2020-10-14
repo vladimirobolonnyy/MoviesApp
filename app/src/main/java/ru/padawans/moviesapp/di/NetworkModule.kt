@@ -8,14 +8,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.padawans.moviesapp.BuildConfig
 import ru.padawans.moviesapp.data.api.MovieApi
 
-
-
 fun provideApiService(): MovieApi {
     val clientBuilder = OkHttpClient.Builder()
     val loggingInterceptor = HttpLoggingInterceptor()
     loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
     clientBuilder.addInterceptor(loggingInterceptor)
-    val retrofit= Retrofit.Builder()
+    val retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .client(clientBuilder.build())
         .addConverterFactory(GsonConverterFactory.create())

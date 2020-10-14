@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.padawans.moviesapp.R
+import ru.padawans.moviesapp.ui.view.MainFragment
 import ru.padawans.moviesapp.ui.view.SearchFragment
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.Main -> {
-//replaceMainFragment
+                    replaceFragment(MainFragment())
                     true
                 }
                 R.id.Search -> {

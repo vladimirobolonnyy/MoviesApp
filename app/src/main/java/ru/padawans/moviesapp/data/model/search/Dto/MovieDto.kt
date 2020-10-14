@@ -13,5 +13,8 @@ class MovieDTO {
     @SerializedName("poster_path")
     val poster: String? = null
 
-    fun convert(): Movie = Movie(title ?: "N/A", vote ?: 0.0, poster)
+    @SerializedName("id")
+    val id: Int? = null
+
+    fun convert(): Movie = Movie(id ?: 0, title ?: "N/A", vote ?: 0.0, poster)
 }

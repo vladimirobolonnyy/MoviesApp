@@ -1,8 +1,8 @@
 package ru.padawans.moviesapp.data.model.search
 
-data class Response(
+data class MovieSearchResponse(
     val page: Int = 0,
     val totalResults: Int = 0,
     val totalPages: Int = 0,
-    val results: List<Movie>?
+    val results: List<Movie>
 )
