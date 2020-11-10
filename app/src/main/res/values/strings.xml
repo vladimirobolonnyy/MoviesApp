@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">MoviesApp</string>
-    <string name="now_playing_movies">Now playing movies</string>
-    <string name="trending_movies">Trending movies</string>
-    <string name="upcoming_movies">Upcoming movies</string>
+    <string name="now_playing_movies">Now playing</string>
+    <string name="trending_movies">Trending</string>
+    <string name="upcoming_movies">Upcoming</string>
     <string name="search_hint">Entry film title</string>
     <string name="main_bottomnav_title">Main</string>
     <string name="search_bottomnav_title">Search</string>
     <string name="account_bottomnav_title">Account</string>
     <string name="poster_contentdescription">poster</string>
     <string name="retry">retry</string>
+    <string name="reviews">reviews</string>
 </resources>

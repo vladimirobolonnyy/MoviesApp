@@ -7,7 +7,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import ru.padawans.moviesapp.data.model.search.Movie
-import ru.padawans.moviesapp.data.repository.mainFragment.SearchRepositoryImpl
+import ru.padawans.moviesapp.data.repository.searchfragment.SearchRepositoryImpl
+
 
 class SearchFragmentViewModel : ViewModel() {
 

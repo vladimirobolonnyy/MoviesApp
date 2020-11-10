@@ -1,24 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="10dp">
-    <ImageView
-        android:id="@+id/upcoming_recycler_iv"
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        tools:src="@mipmap/ic_launcher_round"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/custom_backgound">
+
+
+    <RelativeLayout
+        android:id="@+id/image_zone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/upcoming_recycler_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="fitXY"
+            android:src= "@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/adult_marker_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/upcoming_recycler_iv"
+            android:layout_alignTop="@id/upcoming_recycler_iv"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/adult_marker_background"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/colorAccentText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            tools:text="R" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/upcoming_recycler_iv"
+            android:layout_alignEnd="@id/upcoming_recycler_iv"
+            android:layout_alignBottom="@id/upcoming_recycler_iv"
+            android:background="@drawable/primary_gradient"
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/RatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+
+                android:layout_marginTop="6dp"
+
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressBackgroundTint="@color/grey"
+                android:secondaryProgressTint="#00000000"
+                android:stepSize="0.1"
+                android:theme="@style/RatingBarColor"
+                tools:rating="3" />
+
+            <TextView
+                android:id="@+id/vote_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="6dp"
+
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="200 REVIEWS" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
     <TextView
         android:id="@+id/upcoming_recycler_tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        tools:text="Some film"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_zone"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        tools:text="Some film" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/release_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/upcoming_recycler_tv"
+        android:layout_alignStart="@id/upcoming_recycler_tv"
+        android:layout_alignEnd="@id/upcoming_recycler_tv"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/grey"
+        tools:text="2020-09-01" />
+
+
+</RelativeLayout>

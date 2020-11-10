@@ -1,53 +1,50 @@
 package ru.padawans.moviesapp.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import ru.padawans.moviesapp.BuildConfig
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.upcoming.Results
+import ru.padawans.moviesapp.data.model.upcoming.MovieGeneralInfo
 
-class UpcomingMoviesAdapter: RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingMoviesViewHolder>() {
+class UpcomingMoviesAdapter(private val onItemClick: (Int) -> Unit) :
+    RecyclerView.Adapter<UpcomingMoviesViewHolder>() {
 
-    private var results:MutableList<Results> = mutableListOf()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMoviesViewHolder {
-        val inflater= LayoutInflater.from(parent.context)
-        return UpcomingMoviesViewHolder(inflater,parent)
-    }
+    private val movies = mutableListOf<MovieGeneralInfo>()
 
     override fun onBindViewHolder(holder: UpcomingMoviesViewHolder, position: Int) {
-       holder.bind(results[position])
+        holder.bind(movies.get(position))
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMoviesViewHolder {
+        return UpcomingMoviesViewHolder.create(parent, onItemClick)
     }
 
     override fun getItemCount(): Int {
-       return results.size
+        return movies.size
     }
 
-    fun addData(results: List<Results>?){
-        this.results.clear()
-        if (results != null) {
-            this.results = results.toMutableList()
-        }
-        notifyDataSetChanged()
+    fun addData(movies: List<MovieGeneralInfo>) {
+
+            this.movies.addAll(movies)
+            notifyDataSetChanged()
     }
-
-    class  UpcomingMoviesViewHolder(inflater: LayoutInflater, parent: ViewGroup):RecyclerView.ViewHolder(inflater.inflate(
-        R.layout.upcoming_movie_item,parent,false)){
-
-        private val text:TextView = itemView.findViewById(R.id.upcoming_recycler_tv)
-        private val image:ImageView = itemView.findViewById(R.id.upcoming_recycler_iv)
-
-        fun bind(result: Results){
-            text.text = result.title
-            // w300 размер изображения https://developers.themoviedb.org/3/getting-started/images
-            val imageUrl:String = BuildConfig.BASE_IMG_URL + "w780"+ result.posterPath
-            Picasso.get()
-                .load(imageUrl)
-                .into(image)
+    fun updateData(movies: List<MovieGeneralInfo>){
+        var v = 0
+        for (i in   (this.movies.lastIndex-movies.size+1)..this.movies.lastIndex  ){
+            this.movies.removeAt(i)
+            this.movies.add(i,movies.get(v))
+            v++
         }
+        notifyItemRangeRemoved(this.movies.lastIndex-movies.size+1,movies.size)
+        notifyItemRangeInserted(this.movies.lastIndex-movies.size+1,movies.size)
     }
 }

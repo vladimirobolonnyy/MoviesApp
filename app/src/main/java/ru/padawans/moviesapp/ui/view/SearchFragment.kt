@@ -1,9 +1,7 @@
 package ru.padawans.moviesapp.ui.view
 
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.Menu
-import android.view.MenuInflater
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -20,6 +18,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import ru.padawans.moviesapp.R
+import ru.padawans.moviesapp.ui.ToolbarActivity
 import ru.padawans.moviesapp.ui.adapter.SearchMoviesAdapter
 import ru.padawans.moviesapp.ui.viewmodel.SearchFragmentViewModel
 
@@ -36,8 +35,10 @@ class SearchFragment : Fragment(R.layout.fragment_search), SearchView.OnQueryTex
 
     private var searchJob: Job? = null
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        (activity as? ToolbarActivity)?.showToolbar()
         setHasOptionsMenu(true)
         initAdapter()
         val query = savedInstanceState?.getString(LAST_SEARCH_QUERY) ?: DEFAULT_QUERY
@@ -51,6 +52,7 @@ class SearchFragment : Fragment(R.layout.fragment_search), SearchView.OnQueryTex
         val searchItem = menu.findItem(R.id.action_search)
         searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(this)
+
 
     }
 
@@ -118,6 +120,11 @@ class SearchFragment : Fragment(R.layout.fragment_search), SearchView.OnQueryTex
                 adapter.submitData(it)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as? ToolbarActivity)?.hideToolbar()
     }
 
     companion object {
