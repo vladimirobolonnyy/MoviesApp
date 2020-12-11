@@ -10,4 +10,24 @@
     <string name="poster_contentdescription">poster</string>
     <string name="retry">retry</string>
     <string name="reviews">reviews</string>
+    <string name="info">info</string>
+    <string name="casts">casts</string>
+    <string name="similar">similar</string>
+    <string name="genre">Genre</string>
+    <string name="genres">Genres</string>
+    <string name="overview">Overview</string>
+    <string name="min">min</string>
+
+    <string name="internet_error">Check internet connection and update</string>
+    <string name="common_error">Something went wrong</string>
+    <string name="character">Character</string>
+    <string name="job">Job</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+
+    <string-array name="credit_spinner">
+        <item>Cast</item>
+        <item>Crew</item>
+    </string-array>
+
 </resources>

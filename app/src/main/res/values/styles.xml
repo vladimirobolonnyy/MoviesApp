@@ -16,5 +16,11 @@
         <item name="colorControlNormal">@color/colorAccentText</item>
         <item name="colorControlActivated">@color/colorAccentText</item>
     </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/colorAccentText</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
     
 </resources>

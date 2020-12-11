@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/colorPrimary">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorAccentText"
+        android:gravity="start"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        tools:text="Aaaaaa aaaa "
+        />
+
+
+
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@drawable/custom_backgound">
+        <ImageView
+            android:id="@+id/calendar_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_calendar_accent_24"/>
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/calendar_img"
+            android:layout_alignTop="@id/calendar_img"
+            android:layout_alignBottom="@id/calendar_img"
+            android:textColor="@color/colorText"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            tools:text="AAAAAAAAAAAAA"
+            />
+
+        <ImageView
+            android:id="@+id/earth_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calendar_img"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_earth"/>
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/earth_img"
+            android:layout_alignTop="@id/earth_img"
+            android:layout_alignBottom="@id/earth_img"
+            android:textSize="18sp"
+            android:textColor="@color/colorText"
+            android:gravity="center_vertical"
+            tools:text="AAAAAAAAAAAAA"
+            />
+
+        <ImageView
+            android:id="@+id/runtime_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/earth_img"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_runtime_accent"/>
+        <TextView
+            android:id="@+id/runtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/runtime_img"
+            android:layout_alignTop="@id/runtime_img"
+            android:layout_alignBottom="@id/runtime_img"
+            android:textColor="@color/colorText"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            tools:text="AAAAAAAAAAAAA"
+            />
+        <ImageView
+            android:id="@+id/language_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/runtime_img"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_volume_accent_24"/>
+        <TextView
+            android:id="@+id/language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/language_img"
+            android:layout_alignTop="@id/language_img"
+            android:layout_alignBottom="@id/language_img"
+            android:textColor="@color/colorText"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            tools:text="AAAAAAAAAAAAA"
+            />
+        <ImageView
+            android:id="@+id/budget_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/language_img"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_money_accent_24"/>
+        <TextView
+            android:id="@+id/budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/budget_img"
+            android:layout_alignTop="@id/budget_img"
+            android:layout_alignBottom="@id/budget_img"
+            android:textColor="@color/colorText"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            tools:text="AAAAAAAAAAAAA"
+            />
+
+
+    </RelativeLayout>
+
+<TextView
+    android:id="@+id/overviewTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:textSize="20sp"
+    android:textColor="@color/colorAccentText"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:text="@string/overview"/>
+
+    <TextView
+        android:id="@+id/taglineTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        tools:text="Aaaa Aaaaa aaaa"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccentTitle"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/infoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        tools:text="TextViewAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/genreTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccentText"
+        android:gravity="start"
+        android:textStyle="bold"
+        android:text="@string/genres"/>
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/genreTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        app:atg_textColor="@color/colorText"
+        app:atg_borderColor="@color/colorAccentText"
+        app:atg_dashBorderColor="@color/colorAccentText"
+        app:atg_textSize="24sp"
+        app:atg_backgroundColor="@color/colorTag"
+        app:atg_borderStrokeWidth="2dp"
+        app:atg_verticalPadding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

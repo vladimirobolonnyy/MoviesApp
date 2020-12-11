@@ -1,23 +1,28 @@
 package ru.padawans.moviesapp.ui
 
+
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.ui.view.MainFragment
-import ru.padawans.moviesapp.ui.view.SearchFragment
+import ru.padawans.moviesapp.ui.main.view.MainFragment
+import ru.padawans.moviesapp.ui.search.view.SearchFragment
 
-class MainActivity : AppCompatActivity(),ToolbarActivity {
 
-    private val MAIN_FRAGMENT_TAG = "mainFragment"
+class MainActivity : AppCompatActivity(), ToolbarActivity {
 
-    lateinit var toolbar: Toolbar
-    lateinit var bottomNavView: BottomNavigationView
+    private val TAG = "MainActivity"
+
+    private lateinit var toolbar: Toolbar
+    private lateinit var bottomNavView: BottomNavigationView
     private val mainFragment = MainFragment()
     private val searchFragment = SearchFragment()
 
@@ -26,7 +31,7 @@ class MainActivity : AppCompatActivity(),ToolbarActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       initMainFragment()
+        initMainFragment()
         initBottomNavView()
     }
 
@@ -55,43 +60,40 @@ class MainActivity : AppCompatActivity(),ToolbarActivity {
 
 
     private fun replaceFragment(fragment: Fragment) {
-        if (fragment is SearchFragment){
-            val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
+        if (fragment is SearchFragment) {
             if (currentFragment?.isVisible == true && currentFragment !is SearchFragment) {
                 if (currentFragment !is MainFragment) {
-                    Log.d("Activity", "replaceFragment11: ")
+                    Log.d(TAG, "replaceFragment11: ")
                     supportFragmentManager.beginTransaction()
-                        .remove(supportFragmentManager.findFragmentById(R.id.container)!!).commit()
+                        .remove(currentFragment).commit()
                 }
             }
 
-            if(currentFragment !is SearchFragment){
-                Log.d("Activity", "add search: ")
+            if (currentFragment !is SearchFragment) {
+                Log.d(TAG, "add search: ")
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.container,fragment)
+                    .add(R.id.container, fragment)
                     .hide(mainFragment)
                     .commit()
             }
-
-
-        }else if(fragment is MainFragment){
-            val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
-            if (currentFragment?.isVisible == true && currentFragment !is MainFragment ){
-                Log.d("Activity", "replaceFragment: ")
-                supportFragmentManager.beginTransaction().remove( currentFragment!! ).commit()
+        } else if (fragment is MainFragment) {
+            if (currentFragment?.isVisible == true && currentFragment !is MainFragment) {
+                Log.d(TAG, "replaceFragment: ")
+                supportFragmentManager.beginTransaction().remove(currentFragment).commit()
             }
 
-            if(currentFragment !is MainFragment){
+            if (currentFragment !is MainFragment) {
                 supportFragmentManager.beginTransaction()
                     .show(fragment)
                     .commit()
             }
-
         }
     }
-    private fun initMainFragment(){
+
+    private fun initMainFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.container,mainFragment)
+            .add(R.id.container, mainFragment)
             .commit()
     }
 
@@ -102,6 +104,6 @@ class MainActivity : AppCompatActivity(),ToolbarActivity {
     }
 
     override fun hideToolbar() {
-            supportActionBar?.hide()
+        supportActionBar?.hide()
     }
 }

@@ -1,4 +1,4 @@
-package ru.padawans.moviesapp.data.repository.mainFragment
+package ru.padawans.moviesapp.data.repository.mainfragment
 
 object ContentTypes {
     const val UPCOMING = "UPCOMING"

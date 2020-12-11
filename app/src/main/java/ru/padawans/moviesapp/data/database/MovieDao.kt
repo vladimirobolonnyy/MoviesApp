@@ -1,8 +1,8 @@
 package ru.padawans.moviesapp.data.database
 
 import androidx.room.*
-import ru.padawans.moviesapp.data.model.upcoming.db.MovieGeneralInfoEntity
-import ru.padawans.moviesapp.data.model.upcoming.db.UpcomingMoviesEntity
+import ru.padawans.moviesapp.data.model.main.db.MovieGeneralInfoEntity
+import ru.padawans.moviesapp.data.model.main.db.UpcomingMoviesEntity
 
 @Dao
 abstract class MovieDao {
@@ -21,4 +21,5 @@ abstract class MovieDao {
 
     @Query("SELECT * FROM upcomingmoviesentity,moviegeneralinfodb WHERE contentType=:contentType AND page=:page AND moviesId = movieId ")
     abstract fun getUpcomingByTypeAndPage(contentType: String, page: Int): List<MovieGeneralInfoEntity>
+
 }

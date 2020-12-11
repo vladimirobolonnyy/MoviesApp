@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/custom_backgound"
+    android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/creditAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars"/>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccentText"
+        android:layout_below="@id/creditAvatar"
+        android:text="@string/name"/>
+
+    <TextView
+        android:id="@+id/creditName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:layout_below="@id/name"
+        tools:text="Nameeeee Nameeeeeee"/>
+    <TextView
+        android:id="@+id/character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/creditName"
+        android:textColor="@color/colorAccentText"
+        android:text="@string/character"/>
+    <TextView
+        android:id="@+id/creditCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/character"
+        android:textColor="@color/colorText"
+
+        tools:text="Dart Vaderrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/creditCharacter">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccentText"
+            android:text="@string/gender"/>
+
+        <ImageView
+            android:id="@+id/genderImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:src="@drawable/ic_girl_24_accent"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

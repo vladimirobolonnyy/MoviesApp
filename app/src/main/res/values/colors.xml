@@ -4,8 +4,11 @@
     <color name="colorPrimaryAlpha">#F2191926</color>
     <color name="colorPrimaryAlpha75">#BF191926</color>
     <color name="colorPrimaryDark">#592B02</color>
-    <color name="colorAccent">#734002</color>
+    <color name="colorPrimaryDarkToolbar">#492302</color>
+    <color name="colorAccent">#614625</color>
     <color name="colorText">#D9B68B</color>
     <color name="colorAccentText">#D98E04</color>
+    <color name="colorAccentTitle">#F29B30</color>
     <color name="grey">#6D6D80</color>
+    <color name="colorTag">#292947</color>
 </resources>

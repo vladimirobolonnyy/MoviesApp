@@ -1,12 +1,9 @@
 package ru.padawans.moviesapp.data
 
-import android.util.Log
 import androidx.room.withTransaction
-import kotlinx.coroutines.*
 import ru.padawans.moviesapp.data.database.MovieDatabase
-import ru.padawans.moviesapp.data.model.upcoming.UpcomingMovies
-import ru.padawans.moviesapp.data.model.upcoming.db.MovieGeneralInfoEntity
-import ru.padawans.moviesapp.data.model.upcoming.db.UpcomingMoviesEntity
+import ru.padawans.moviesapp.data.model.main.db.MovieGeneralInfoEntity
+import ru.padawans.moviesapp.data.model.main.db.UpcomingMoviesEntity
 
 class Storage(
     private val database: MovieDatabase
@@ -25,15 +22,12 @@ class Storage(
                 movieDao.insertUpcomingMovies(upcomingMoviesEntity)
             }
             movieDao.insertMovieGeneralInfo(movieGeneralInfoEntitys)
-
         }
     }
-
 
     fun getMovieGeneralInfo(contentType: String, page: Int): List<MovieGeneralInfoEntity> {
         val upcomingEntity: List<MovieGeneralInfoEntity> =
             movieDao.getUpcomingByTypeAndPage(contentType, page)
-
         return upcomingEntity
     }
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    android:background="@drawable/custom_backgound"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/reviewerAvatarImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/reviewerAvatarImage"
+        android:layout_alignTop="@id/reviewerAvatarImage"
+        android:textColor="@color/colorAccentText"
+        android:text="Name"/>
+    <TextView
+        android:id="@+id/reviewerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Name"
+        android:layout_alignStart="@id/Name"
+        android:textColor="@color/colorAccentText"
+        tools:text="AAAAAAAAaa"/>
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reviewerName"
+        android:layout_alignStart="@id/Name"
+        android:textColor="@color/colorAccentText"
+        android:text="Date"/>
+    <TextView
+        android:id="@+id/createdAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Date"
+        android:layout_alignStart="@id/reviewerName"
+        android:textColor="@color/colorAccentText"
+        tools:text="2019-12-23 \n 03:12:18"/>
+    <TextView
+        android:id="@+id/Rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createdAt"
+        android:layout_alignStart="@id/Name"
+        android:textColor="@color/colorAccentText"
+        android:text="Rating"/>
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/Rating"
+        android:layout_marginStart="5dp"
+        android:layout_alignBottom="@id/Rating"
+        android:textColor="@color/colorAccentText"
+        tools:text="5"/>
+
+    <TextView
+        android:id="@+id/review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_below="@id/reviewerAvatarImage"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textColorLink="@color/colorAccentText"
+        android:textIsSelectable="true"
+        tools:text="I'm generally not a comedy guy. I did see the first Borat and found it to be a hodge-podge of prank sketches with some very funny gags.\n\nSacha Baron Cohan's follow-up improves over the original with a more story-based approach that still upends the '-isms\ in America (racism, sexism, etc.) in the midst of a freaking pandemic. It couldn't be more well-timed in this brutal election season.\n\nThe standout is Borat's 15 year old daughter played by Maria Bakalova (she's actually 24) who steals the show with her cluelessness and likeability. \n\n How well you enjoy this movie will depend on your own level of political ideology and tolerance to very crude and crass behavior. Personally, I found it hilarious. But it is definitely not for everybody."/>
+
+</RelativeLayout>

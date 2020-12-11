@@ -28,5 +28,4 @@ class SearchMoviesPagingSource(
             return LoadResult.Error(exception)
         }
     }
-
 }
