@@ -2,13 +2,13 @@ package ru.padawans.moviesapp.data.repository.mainfragment
 
 import android.util.Log
 import ru.padawans.moviesapp.data.Storage
-import ru.padawans.moviesapp.data.api.MovieApi
+import ru.padawans.network.api.MovieApi
 import ru.padawans.moviesapp.data.cache.Cache
 import ru.padawans.domain.model.main.MovieGeneralInfo
 import ru.padawans.moviesapp.data.model.main.db.MovieGeneralInfoEntity
 import ru.padawans.moviesapp.data.model.main.db.UpcomingMoviesEntity
-import ru.padawans.moviesapp.data.model.main.dto.UpcomingMoviesDto
-import ru.padawans.moviesapp.di.NetworkModule
+import ru.padawans.network.model.main.UpcomingMoviesDto
+import ru.padawans.network.di.NetworkModule
 import ru.padawans.moviesapp.di.StorageModule
 
 class PagingSource(
@@ -38,8 +38,8 @@ class PagingSource(
 
         if (movies != null && movies.size > 0) {
             addDataToDatabase(
-                response.convertToDB(contentType),
-                (response.results!!.map { it.convertToEntity() })
+                UpcomingMoviesEntity(response.convert(),contentType),
+                response.results!!.map { MovieGeneralInfoEntity(it.convert()) }
             )
             Cache.set(contentType + page, movies, 60)
         }
@@ -71,13 +71,13 @@ class PagingSource(
             if (movies == database.map { it.convert() }) {
                 Log.d("TAG", "isDataInDatabaseValid: yes")
                 return emptyList()
-            } else if (response.results.isNotEmpty()) {
+            } else if (!response.results.isNullOrEmpty()) {
                 Log.d("TAG", "isDataInDatabaseValid: noo")
                 storage.clear(contentType, page, database)
 
                 addDataToDatabase(
-                    response.convertToDB(contentType),
-                    (response.results!!.map { it.convertToEntity() })
+                    UpcomingMoviesEntity(response.convert(),contentType),
+                    response.results!!.map { MovieGeneralInfoEntity(it.convert()) }
                 )
                 return movies
             } else {

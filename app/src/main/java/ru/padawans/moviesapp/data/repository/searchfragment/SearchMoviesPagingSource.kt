@@ -2,7 +2,7 @@ package ru.padawans.moviesapp.data.repository.searchfragment
 
 import androidx.paging.PagingSource
 import retrofit2.HttpException
-import ru.padawans.moviesapp.data.api.MovieApi
+import ru.padawans.network.api.MovieApi
 import ru.padawans.domain.model.search.Movie
 import java.io.IOException
 

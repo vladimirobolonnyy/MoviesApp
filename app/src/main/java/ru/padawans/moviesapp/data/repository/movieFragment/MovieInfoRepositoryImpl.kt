@@ -1,6 +1,6 @@
 package ru.padawans.moviesapp.data.repository.movieFragment
 
-import ru.padawans.moviesapp.data.api.MovieApi
+import ru.padawans.network.api.MovieApi
 import ru.padawans.moviesapp.data.cache.Cache
 import ru.padawans.domain.model.main.UpcomingMovies
 import ru.padawans.domain.model.movie.cast.CastsModel
@@ -8,7 +8,7 @@ import ru.padawans.domain.model.movie.details.MovieDetails
 import ru.padawans.domain.model.movie.reviews.MovieReviews
 import ru.padawans.domain.model.movie.trailers.TrailerResponse
 import ru.padawans.domain.repository.MovieInfoRepository
-import ru.padawans.moviesapp.di.NetworkModule
+import ru.padawans.network.di.NetworkModule
 
 class MovieInfoRepositoryImpl(private val movieApi: MovieApi = NetworkModule.api) :
     MovieInfoRepository {

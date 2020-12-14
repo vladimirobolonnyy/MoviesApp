@@ -45,6 +45,22 @@ data class MovieGeneralInfoEntity(
 
     ) {
 
+    constructor(movieGeneralInfo: MovieGeneralInfo):this(
+        movieGeneralInfo.popularity,
+        movieGeneralInfo.voteCount,
+        movieGeneralInfo.video,
+        movieGeneralInfo.posterPath,
+        movieGeneralInfo.id,
+        movieGeneralInfo.adult,
+        movieGeneralInfo.backdropPath,
+        movieGeneralInfo.originalLanguage,
+        movieGeneralInfo.originalTitle,
+        movieGeneralInfo.genreIds,
+        movieGeneralInfo.title,
+        movieGeneralInfo.voteAverage,
+        movieGeneralInfo.overview,
+        movieGeneralInfo.releaseDate
+    )
 
     fun convert(): MovieGeneralInfo {
         return MovieGeneralInfo(

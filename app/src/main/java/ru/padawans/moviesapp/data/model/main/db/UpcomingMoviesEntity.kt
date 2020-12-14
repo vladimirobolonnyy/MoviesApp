@@ -21,19 +21,31 @@ class UpcomingMoviesEntity(
     @ColumnInfo(name = "contentType")
     val contentType: String = "",
 
-) {
-    @PrimaryKey(autoGenerate = true)
-    var uid: Int?=null
-    @ColumnInfo(name = "moviesId")
-    var moviesId:Int =0
+    ) {
 
-    fun convert(results:List<MovieGeneralInfo>): UpcomingMovies {
-        val dates = Dates("","")
+    constructor(upcomingMovies: UpcomingMovies,contentType: String) : this(
+        upcomingMovies.page,
+        upcomingMovies.totalResults,
+        upcomingMovies.totalPages,
+        contentType
+    ) {
+    }
+
+
+    @PrimaryKey(autoGenerate = true)
+    var uid: Int? = null
+
+    @ColumnInfo(name = "moviesId")
+    var moviesId: Int = 0
+
+    fun convert(results: List<MovieGeneralInfo>): UpcomingMovies {
+        val dates = Dates("", "")
         if (results != null && page != null && totalResults != null && dates != null && totalPages != null) {
-            return UpcomingMovies(results, page, totalResults,dates, totalPages)
+            return UpcomingMovies(results, page, totalResults, dates, totalPages)
         } else {
             throw RuntimeException("Not valid parametrs")
         }
     }
+
 
 }
