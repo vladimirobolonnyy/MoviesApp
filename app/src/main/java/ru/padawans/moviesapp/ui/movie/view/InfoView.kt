@@ -6,8 +6,8 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.movie_info_view.view.*
 import kotlinx.android.synthetic.main.movie_info_view.view.release_date
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.movie.details.MovieDetails
-import ru.padawans.moviesapp.data.model.movie.details.ProductionCountriesItem
+import ru.padawans.domain.model.movie.details.MovieDetails
+import ru.padawans.domain.model.movie.details.ProductionCountriesItem
 
 
 class InfoView @JvmOverloads constructor(context: Context,attrs: AttributeSet? = null,

@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.search.Dto
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.search.MovieSearchResponse
+import ru.padawans.domain.model.search.MovieSearchResponse
 
 class MovieSearchResponseDTO(
     @SerializedName("page")

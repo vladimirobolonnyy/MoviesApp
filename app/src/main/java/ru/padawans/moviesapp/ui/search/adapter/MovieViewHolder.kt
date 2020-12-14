@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.search_movie_item.view.*
 import ru.padawans.moviesapp.BuildConfig
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.search.Movie
+import ru.padawans.domain.model.search.Movie
 
 class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val movie_title: TextView = view.item_title

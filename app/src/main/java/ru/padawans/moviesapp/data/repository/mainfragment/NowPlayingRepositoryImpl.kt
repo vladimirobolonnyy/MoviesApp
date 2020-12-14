@@ -1,9 +1,8 @@
 package ru.padawans.moviesapp.data.repository.mainfragment
 
-import android.util.Log
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
+import ru.padawans.domain.repository.NowPlayingRepository
 
 
 class NowPlayingRepositoryImpl(private val pagingSource: PagingSource = PagingSource(ContentTypes.NOW_PLAYING)) :

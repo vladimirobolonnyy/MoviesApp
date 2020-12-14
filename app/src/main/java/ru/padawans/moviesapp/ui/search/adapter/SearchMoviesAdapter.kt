@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import ru.padawans.moviesapp.data.model.search.Movie
+import ru.padawans.domain.model.search.Movie
 
 class SearchMoviesAdapter :
     PagingDataAdapter<Movie, RecyclerView.ViewHolder>(REPO_COMPARATOR) {

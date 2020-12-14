@@ -1,9 +1,8 @@
 package ru.padawans.moviesapp.ui.main.adapter
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 
 class MainMoviesAdapter(private val onItemClick: (Int) -> Unit) :
     RecyclerView.Adapter<MainMoviesViewHolder>() {

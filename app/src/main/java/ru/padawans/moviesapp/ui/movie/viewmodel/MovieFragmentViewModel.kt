@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
-import ru.padawans.moviesapp.data.model.movie.cast.CastsModel
-import ru.padawans.moviesapp.data.model.movie.details.MovieDetails
-import ru.padawans.moviesapp.data.model.movie.reviews.ResultsItem
-import ru.padawans.moviesapp.data.model.movie.trailers.TrailerResponse
+import ru.padawans.domain.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.movie.cast.CastsModel
+import ru.padawans.domain.model.movie.details.MovieDetails
+import ru.padawans.domain.model.movie.reviews.ResultsItem
+import ru.padawans.domain.model.movie.trailers.TrailerResponse
 import ru.padawans.moviesapp.data.repository.movieFragment.*
 import ru.padawans.moviesapp.ui.movie.view.MovieFragment
 import ru.padawans.moviesapp.utils.ErrorMessage

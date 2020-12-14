@@ -11,9 +11,9 @@ import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.credit_item.view.*
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.movie.cast.CastItem
-import ru.padawans.moviesapp.data.model.movie.cast.CastsModel
-import ru.padawans.moviesapp.data.model.movie.cast.CrewItem
+import ru.padawans.domain.model.movie.cast.CastItem
+import ru.padawans.domain.model.movie.cast.CastsModel
+import ru.padawans.domain.model.movie.cast.CrewItem
 
 class CastsAdapter : RecyclerView.Adapter<CastsAdapter.CastsViewHolder>() {
 

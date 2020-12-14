@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.movie.dto.trailers
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.movie.trailers.TrailerItem
+import ru.padawans.domain.model.movie.trailers.TrailerItem
 
 data class TrailerItemDto(
 

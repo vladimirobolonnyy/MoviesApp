@@ -3,7 +3,7 @@ package ru.padawans.moviesapp.data.repository.searchfragment
 import androidx.paging.PagingSource
 import retrofit2.HttpException
 import ru.padawans.moviesapp.data.api.MovieApi
-import ru.padawans.moviesapp.data.model.search.Movie
+import ru.padawans.domain.model.search.Movie
 import java.io.IOException
 
 private const val MOVIE_SEARCH_STARTING_PAGE_INDEX = 1

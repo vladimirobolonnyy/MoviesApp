@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.movie.dto.cast
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.movie.cast.CrewItem
+import ru.padawans.domain.model.movie.cast.CrewItem
 import ru.padawans.moviesapp.utils.Resolutions
 import ru.padawans.moviesapp.data.model.getAvatarUrl
 

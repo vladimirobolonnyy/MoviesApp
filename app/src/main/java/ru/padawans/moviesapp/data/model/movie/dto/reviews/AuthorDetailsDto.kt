@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.movie.dto.reviews
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.movie.reviews.AuthorDetails
+import ru.padawans.domain.model.movie.reviews.AuthorDetails
 import ru.padawans.moviesapp.utils.Resolutions
 import ru.padawans.moviesapp.data.model.getAvatarUrl
 

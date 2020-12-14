@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.main.dto
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 import ru.padawans.moviesapp.data.model.main.db.MovieGeneralInfoEntity
 
 
@@ -22,7 +22,7 @@ class MovieGeneralInfoDto (
 	@SerializedName("overview") val overview : String?,
 	@SerializedName("release_date") val releaseDate : String?
 ){
-	fun convert():MovieGeneralInfo{
+	fun convert(): MovieGeneralInfo {
 			return MovieGeneralInfo(popularity?:0.0, voteCount?:0, video!!, posterPath ?: "N/A", id?:0, adult!!,
 				backdropPath?:"N/A", originalLanguage?:"N/A", originalTitle?:"N/A",
 				genreIds?: listOf(0), title?:"N/A", voteAverage?:0.0, overview?:"N/A", releaseDate?:"N/A")

@@ -70,6 +70,7 @@ dependencies {
 
     implementation 'com.google.dagger:dagger:2.29.1'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation project(path: ':domain')
 
     kapt 'com.google.dagger:dagger-compiler:2.29.1'
 

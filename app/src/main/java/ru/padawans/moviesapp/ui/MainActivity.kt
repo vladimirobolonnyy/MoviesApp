@@ -17,6 +17,7 @@ import ru.padawans.moviesapp.ui.main.view.MainFragment
 import ru.padawans.moviesapp.ui.search.view.SearchFragment
 
 
+
 class MainActivity : AppCompatActivity(), ToolbarActivity {
 
     private val TAG = "MainActivity"
@@ -106,4 +107,7 @@ class MainActivity : AppCompatActivity(), ToolbarActivity {
     override fun hideToolbar() {
         supportActionBar?.hide()
     }
+
+
+
 }

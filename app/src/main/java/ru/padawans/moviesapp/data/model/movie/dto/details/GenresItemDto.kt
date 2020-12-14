@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.movie.dto.details
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.movie.details.GenresItem
+import ru.padawans.domain.model.movie.details.GenresItem
 
 class GenresItemDto(
 

@@ -4,14 +4,12 @@ import android.util.Log
 import ru.padawans.moviesapp.data.Storage
 import ru.padawans.moviesapp.data.api.MovieApi
 import ru.padawans.moviesapp.data.cache.Cache
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 import ru.padawans.moviesapp.data.model.main.db.MovieGeneralInfoEntity
 import ru.padawans.moviesapp.data.model.main.db.UpcomingMoviesEntity
-import ru.padawans.moviesapp.data.model.main.dto.DatesDto
 import ru.padawans.moviesapp.data.model.main.dto.UpcomingMoviesDto
 import ru.padawans.moviesapp.di.NetworkModule
 import ru.padawans.moviesapp.di.StorageModule
-import java.lang.Exception
 
 class PagingSource(
     val contentType: String,

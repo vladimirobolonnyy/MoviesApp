@@ -1,8 +1,8 @@
 package ru.padawans.moviesapp.data.model.main.dto
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.main.Dates
-import ru.padawans.moviesapp.data.model.main.UpcomingMovies
+import ru.padawans.domain.model.main.Dates
+import ru.padawans.domain.model.main.UpcomingMovies
 import ru.padawans.moviesapp.data.model.main.db.UpcomingMoviesEntity
 import java.lang.RuntimeException
 

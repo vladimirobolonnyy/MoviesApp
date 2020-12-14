@@ -2,15 +2,11 @@ package ru.padawans.moviesapp.ui.main.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 import ru.padawans.movie.UpcomingRepositoryImpl
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 import ru.padawans.moviesapp.data.repository.mainfragment.*
-import ru.padawans.moviesapp.R
 import ru.padawans.moviesapp.utils.ErrorMessage
 
 

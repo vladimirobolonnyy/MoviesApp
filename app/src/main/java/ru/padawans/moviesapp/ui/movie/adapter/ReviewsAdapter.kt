@@ -8,12 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.review_movie_item.view.*
-import kotlinx.android.synthetic.main.upcoming_movie_item.view.*
-import ru.padawans.moviesapp.BuildConfig
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
-import ru.padawans.moviesapp.data.model.movie.reviews.MovieReviews
-import ru.padawans.moviesapp.data.model.movie.reviews.ResultsItem
+import ru.padawans.domain.model.movie.reviews.ResultsItem
 
 class ReviewsAdapter: RecyclerView.Adapter<ReviewsAdapter.ReviewsViewHolder>() {
 

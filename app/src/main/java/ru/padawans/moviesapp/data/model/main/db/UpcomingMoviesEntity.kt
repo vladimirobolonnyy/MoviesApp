@@ -2,9 +2,9 @@ package ru.padawans.moviesapp.data.model.main.db
 
 import androidx.room.*
 import ru.padawans.moviesapp.data.database.Converters
-import ru.padawans.moviesapp.data.model.main.Dates
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
-import ru.padawans.moviesapp.data.model.main.UpcomingMovies
+import ru.padawans.domain.model.main.Dates
+import ru.padawans.domain.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.UpcomingMovies
 import java.lang.RuntimeException
 
 //todo make table name via consts
@@ -27,7 +27,7 @@ class UpcomingMoviesEntity(
     @ColumnInfo(name = "moviesId")
     var moviesId:Int =0
 
-    fun convert(results:List<MovieGeneralInfo>):UpcomingMovies{
+    fun convert(results:List<MovieGeneralInfo>): UpcomingMovies {
         val dates = Dates("","")
         if (results != null && page != null && totalResults != null && dates != null && totalPages != null) {
             return UpcomingMovies(results, page, totalResults,dates, totalPages)

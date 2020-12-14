@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.movie_casts_view.view.*
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.movie.cast.CastsModel
+import ru.padawans.domain.model.movie.cast.CastsModel
 import ru.padawans.moviesapp.ui.movie.adapter.CastsAdapter
 
 

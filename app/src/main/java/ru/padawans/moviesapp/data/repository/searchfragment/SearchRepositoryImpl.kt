@@ -5,7 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import ru.padawans.moviesapp.data.api.MovieApi
-import ru.padawans.moviesapp.data.model.search.Movie
+import ru.padawans.domain.model.search.Movie
+import ru.padawans.domain.repository.SearchRepository
 import ru.padawans.moviesapp.di.NetworkModule
 
 

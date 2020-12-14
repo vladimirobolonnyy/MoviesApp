@@ -1,12 +1,11 @@
 package ru.padawans.movie
 
-import ru.padawans.moviesapp.data.repository.mainfragment.UpcomingRepository
+import ru.padawans.domain.repository.UpcomingRepository
 
 
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 import ru.padawans.moviesapp.data.repository.mainfragment.ContentTypes
 
 import ru.padawans.moviesapp.data.repository.mainfragment.PagingSource

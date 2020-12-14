@@ -1,7 +1,7 @@
 package ru.padawans.moviesapp.data.model.movie.dto.details
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.movie.details.SpokenLanguagesItem
+import ru.padawans.domain.model.movie.details.SpokenLanguagesItem
 
 class SpokenLanguagesItemDto(
 

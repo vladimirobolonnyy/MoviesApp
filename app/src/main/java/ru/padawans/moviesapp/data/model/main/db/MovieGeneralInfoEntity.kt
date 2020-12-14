@@ -3,7 +3,7 @@ package ru.padawans.moviesapp.data.model.main.db
 import androidx.room.*
 import ru.padawans.moviesapp.data.database.Converters
 import ru.padawans.moviesapp.data.database.TableNames
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 
 @Entity(
     tableName = TableNames.GENERAL_INFO

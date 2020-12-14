@@ -1,9 +1,8 @@
 package ru.padawans.moviesapp.data.model.movie.dto.details
 
 import com.google.gson.annotations.SerializedName
-import ru.padawans.moviesapp.data.model.movie.details.*
-import ru.padawans.moviesapp.data.model.movie.details.MovieDetails
-import java.lang.NullPointerException
+import ru.padawans.domain.model.movie.details.*
+import ru.padawans.domain.model.movie.details.MovieDetails
 
 class MovieDetailsDto(
 

@@ -9,7 +9,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.upcoming_movie_item.view.*
 import ru.padawans.moviesapp.BuildConfig
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.model.main.MovieGeneralInfo
+import ru.padawans.domain.model.main.MovieGeneralInfo
 
 class MainMoviesViewHolder(view: View, val onItemClick: (Int) -> Unit) : RecyclerView.ViewHolder(view) {
 companion object{
