@@ -36,7 +36,7 @@ class PagingSource(
         val movies = response.results?.map { it.convert() }
         Log.d("TAG", "loadUpcomingMovies: from server")
 
-        if (movies != null && movies.size > 0) {
+        if (movies != null && movies.isNotEmpty()) {
             addDataToDatabase(
                 UpcomingMoviesEntity(response.convert(),contentType),
                 response.results!!.map { MovieGeneralInfoEntity(it.convert()) }
