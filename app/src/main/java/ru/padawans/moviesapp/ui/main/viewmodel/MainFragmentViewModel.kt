@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.padawans.movie.UpcomingRepositoryImpl
 import ru.padawans.domain.model.main.MovieGeneralInfo
-import ru.padawans.moviesapp.data.repository.mainfragment.*
+import ru.padawans.database.repository.mainfragment.*
 import ru.padawans.moviesapp.utils.ErrorMessage
 
 

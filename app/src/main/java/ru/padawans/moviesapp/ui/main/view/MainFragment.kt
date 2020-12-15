@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.main_fragment.*
 import ru.padawans.moviesapp.R
-import ru.padawans.moviesapp.data.repository.mainfragment.ContentTypes
+import ru.padawans.database.repository.mainfragment.ContentTypes
 import ru.padawans.moviesapp.ui.ToolbarActivity
 import ru.padawans.moviesapp.ui.main.adapter.MainMoviesAdapter
 import ru.padawans.moviesapp.ui.main.adapter.ViewPagerAdapter

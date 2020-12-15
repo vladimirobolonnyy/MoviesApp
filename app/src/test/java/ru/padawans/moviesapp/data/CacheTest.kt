@@ -1,14 +1,11 @@
 package ru.padawans.moviesapp.data
 
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import ru.padawans.moviesapp.data.cache.Cache
-import kotlin.collections.emptyList as emptyList
+import ru.padawans.database.cache.Cache
 
 class CacheTest {
 

@@ -10,7 +10,7 @@ import ru.padawans.domain.model.movie.cast.CastsModel
 import ru.padawans.domain.model.movie.details.MovieDetails
 import ru.padawans.domain.model.movie.reviews.ResultsItem
 import ru.padawans.domain.model.movie.trailers.TrailerResponse
-import ru.padawans.moviesapp.data.repository.movieFragment.*
+import ru.padawans.database.repository.movieFragment.*
 import ru.padawans.moviesapp.ui.movie.view.MovieFragment
 import ru.padawans.moviesapp.utils.ErrorMessage
 import kotlin.Exception

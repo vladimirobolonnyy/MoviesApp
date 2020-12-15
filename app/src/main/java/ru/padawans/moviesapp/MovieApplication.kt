@@ -2,9 +2,9 @@ package ru.padawans.moviesapp
 
 import android.app.Application
 import androidx.room.Room
-import ru.padawans.moviesapp.data.Storage
-import ru.padawans.moviesapp.data.database.MovieDatabase
-import ru.padawans.moviesapp.di.StorageModule
+import ru.padawans.database.Storage
+import ru.padawans.database.MovieDatabase
+import ru.padawans.database.di.StorageModule
 
 
 class MovieApplication: Application() {
