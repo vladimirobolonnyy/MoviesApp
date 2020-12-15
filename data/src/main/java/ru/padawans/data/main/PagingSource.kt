@@ -1,4 +1,4 @@
-package ru.padawans.database.repository.mainfragment
+package ru.padawans.data.main
 
 import android.util.Log
 import ru.padawans.database.Storage
@@ -10,6 +10,7 @@ import ru.padawans.database.model.main.UpcomingMoviesEntity
 import ru.padawans.network.model.main.UpcomingMoviesDto
 import ru.padawans.network.di.NetworkModule
 import ru.padawans.database.di.StorageModule
+import ru.padawans.domain.ContentTypes
 
 class PagingSource(
     val contentType: String,

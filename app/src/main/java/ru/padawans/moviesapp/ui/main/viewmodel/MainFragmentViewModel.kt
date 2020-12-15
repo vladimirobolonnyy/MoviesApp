@@ -4,9 +4,10 @@ import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import ru.padawans.movie.UpcomingRepositoryImpl
+import ru.padawans.data.main.UpcomingRepositoryImpl
 import ru.padawans.domain.model.main.MovieGeneralInfo
-import ru.padawans.database.repository.mainfragment.*
+import ru.padawans.data.main.*
+import ru.padawans.domain.ContentTypes
 import ru.padawans.moviesapp.utils.ErrorMessage
 
 

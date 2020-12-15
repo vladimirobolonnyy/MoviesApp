@@ -1,4 +1,4 @@
-package ru.padawans.database.repository.mainfragment
+package ru.padawans.data.main
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

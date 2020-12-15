@@ -1,4 +1,4 @@
-package ru.padawans.database.repository.mainfragment
+package ru.padawans.domain
 
 object ContentTypes {
     const val UPCOMING = "UPCOMING"

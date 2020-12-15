@@ -1,4 +1,4 @@
-package ru.padawans.database.repository.searchFragment
+package ru.padawans.data.search
 
 import androidx.paging.PagingSource
 import retrofit2.HttpException

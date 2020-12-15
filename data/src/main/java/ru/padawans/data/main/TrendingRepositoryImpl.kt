@@ -1,7 +1,8 @@
-package ru.padawans.database.repository.mainfragment
+package ru.padawans.data.main
 
 import kotlinx.coroutines.flow.*
 import ru.padawans.domain.model.main.MovieGeneralInfo
+import ru.padawans.domain.ContentTypes
 import ru.padawans.domain.repository.TrendingRepository
 
 

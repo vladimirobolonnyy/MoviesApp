@@ -1,4 +1,4 @@
-package ru.padawans.database.repository.movieFragment
+package ru.padawans.data.movie
 
 import ru.padawans.network.api.MovieApi
 import ru.padawans.database.cache.Cache

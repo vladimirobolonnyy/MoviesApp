@@ -1,4 +1,4 @@
-package ru.padawans.movie
+package ru.padawans.data.main
 
 import ru.padawans.domain.repository.UpcomingRepository
 
@@ -6,10 +6,7 @@ import ru.padawans.domain.repository.UpcomingRepository
 import android.util.Log
 import kotlinx.coroutines.flow.*
 import ru.padawans.domain.model.main.MovieGeneralInfo
-import ru.padawans.database.repository.mainfragment.ContentTypes
-
-import ru.padawans.database.repository.mainfragment.PagingSource
-import ru.padawans.database.repository.mainfragment.getData
+import ru.padawans.domain.ContentTypes
 
 
 class UpcomingRepositoryImpl(
