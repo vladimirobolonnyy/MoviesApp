@@ -1,18 +1,26 @@
 package ru.padawans.features.main.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.*
-import kotlinx.coroutines.flow.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.padawans.data.main.TrendingRepositoryImpl
 import ru.padawans.data.main.UpcomingRepositoryImpl
-import ru.padawans.domain.model.main.MovieGeneralInfo
-import ru.padawans.data.main.*
 import ru.padawans.domain.ContentTypes
+import ru.padawans.domain.di.DataProvider
+import ru.padawans.domain.model.main.MovieGeneralInfo
+import ru.padawans.domain.repository.NowPlayingRepository
 import ru.padawans.features.ErrorMessage
 
 
-
-class MainFragmentViewModel() : ViewModel() {
+class MainViewModel(
+    dataProvider: DataProvider,
+    private val nowPlayingRepository: NowPlayingRepository = dataProvider.getNowPlayingRepository()
+) : ViewModel() {
 
     private val _movieId = MutableLiveData<Int>()
     val movieId: LiveData<Int> = _movieId
@@ -41,7 +49,6 @@ class MainFragmentViewModel() : ViewModel() {
 
     private val upcomingRepository = UpcomingRepositoryImpl()
     private val trendingRepository = TrendingRepositoryImpl()
-    private val nowPlayingRepository = NowPlayingRepositoryImpl()
 
     init {
         loadUpcomingMovies(upcomingPage)
