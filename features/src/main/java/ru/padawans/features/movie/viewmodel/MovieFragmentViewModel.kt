@@ -10,12 +10,16 @@ import ru.padawans.domain.model.movie.cast.CastsModel
 import ru.padawans.domain.model.movie.details.MovieDetails
 import ru.padawans.domain.model.movie.reviews.ResultsItem
 import ru.padawans.domain.model.movie.trailers.TrailerResponse
-import ru.padawans.data.movie.*
+import ru.padawans.domain.di.DataProvider
+import ru.padawans.domain.repository.MovieInfoRepository
 import ru.padawans.features.ErrorMessage
 import ru.padawans.features.movie.view.MovieFragment
 import kotlin.Exception
 
-class MovieFragmentViewModel(movieId: Int) : ViewModel() {
+class MovieFragmentViewModel(
+    provider: DataProvider, movieId: Int,
+    private val movieInfoRepository: MovieInfoRepository = provider.getMovieInfoRepository()
+) : ViewModel() {
 
     private val _infoData = MutableLiveData<MovieDetails>()
     val infoData = _infoData
@@ -39,8 +43,6 @@ class MovieFragmentViewModel(movieId: Int) : ViewModel() {
     val error = _error
 
 
-    private val trailersRepository = MovieInfoRepositoryImpl()
-
     private var reviewPage: Int = 1
     private var totalReviewPage: Int = 0
 
@@ -59,7 +61,7 @@ class MovieFragmentViewModel(movieId: Int) : ViewModel() {
     private fun getDetails(movieId: Int) {
         viewModelScope.launch {
             try {
-                _infoData.value = trailersRepository.getDetails(movieId)
+                _infoData.value = movieInfoRepository.getDetails(movieId)
             } catch (e: Exception) {
                 _error.value = ErrorMessage.getErrorMessage(e)
             }
@@ -69,7 +71,7 @@ class MovieFragmentViewModel(movieId: Int) : ViewModel() {
     private fun getTrailers(movieId: Int) {
         viewModelScope.launch {
             try {
-                _trailersData.value = getYouTubeKeys(trailersRepository.getMovieTrailer(movieId))
+                _trailersData.value = getYouTubeKeys(movieInfoRepository.getMovieTrailer(movieId))
             } catch (e: Exception) {
                 _error.value = ErrorMessage.getErrorMessage(e)
             }
@@ -80,7 +82,7 @@ class MovieFragmentViewModel(movieId: Int) : ViewModel() {
     private fun getReviews(movieId: Int, page: Int) {
         viewModelScope.launch {
             try {
-                val reviews = trailersRepository.getReviews(movieId, page)
+                val reviews = movieInfoRepository.getReviews(movieId, page)
                 totalReviewPage = reviews.totalPages
                 _reviewsData.value = reviews.results
             } catch (e: Exception) {
@@ -93,7 +95,7 @@ class MovieFragmentViewModel(movieId: Int) : ViewModel() {
     private fun getSimilar(movieId: Int, page: Int) {
         viewModelScope.launch {
             try {
-                val similar = trailersRepository.getSimilar(movieId, page)
+                val similar = movieInfoRepository.getSimilar(movieId, page)
                 Log.d("Main", "getSimilar: " + page)
                 totalSimilarPage = similar.totalPages
                 _similarData.value = similar.results
@@ -106,7 +108,7 @@ class MovieFragmentViewModel(movieId: Int) : ViewModel() {
     private fun getCast(movieId: Int) {
         viewModelScope.launch {
             try {
-                _castData.value = trailersRepository.getCasts(movieId)
+                _castData.value = movieInfoRepository.getCasts(movieId)
             } catch (e: Exception) {
                 _error.value = ErrorMessage.getErrorMessage(e)
             }

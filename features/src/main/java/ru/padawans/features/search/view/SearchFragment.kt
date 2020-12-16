@@ -16,20 +16,20 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
+import ru.padawans.domain.di.MainDependencyProvider
 import ru.padawans.features.R
 import ru.padawans.features.ToolbarActivity
 import ru.padawans.features.search.adapter.SearchMoviesAdapter
 import ru.padawans.features.search.viewmodel.SearchFragmentViewModel
 import ru.padawans.features.search.adapter.SearchMovieLoadStateAdapter
+import ru.padawans.features.utils.viewModels
 
 class SearchFragment : Fragment(R.layout.fragment_search), SearchView.OnQueryTextListener {
     //searchView
     lateinit var searchView: SearchView
 
-    //viewModel
-    private val searchViewModel: SearchFragmentViewModel by lazy {
-        ViewModelProvider(this).get(SearchFragmentViewModel::class.java)
-    }
+    private val provider by lazy { (this.activity?.application as MainDependencyProvider).getDataProvider }
+    private val searchViewModel: SearchFragmentViewModel by viewModels { SearchFragmentViewModel(provider) }
 
     private val adapter = SearchMoviesAdapter()
 

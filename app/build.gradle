@@ -53,17 +53,18 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation project(path: ':domain')
-    implementation project(path: ':network')
-    implementation project(path: ':database')
     implementation project(path: ':data')
     implementation project(path: ':features')
+    implementation project(path: ':database')
+    implementation project(path: ':domain')
 
+    
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
     implementation 'androidx.appcompat:appcompat:1.2.0'
+
 
     def room_version = "2.3.0-alpha03"
 

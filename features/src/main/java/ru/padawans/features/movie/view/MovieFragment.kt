@@ -13,21 +13,23 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.movie_fragment.*
+import ru.padawans.domain.di.MainDependencyProvider
 import ru.padawans.features.R
 import ru.padawans.features.ToolbarActivity
 import ru.padawans.features.main.adapter.MainMoviesAdapter
+import ru.padawans.features.main.viewmodel.MainViewModel
 import ru.padawans.features.movie.adapter.MoviePagerAdapter
 import ru.padawans.features.movie.adapter.ReviewsAdapter
 import ru.padawans.features.movie.adapter.TrailersAdapter
 import ru.padawans.features.movie.viewmodel.MovieFragmentViewModel
-import ru.padawans.features.movie.viewmodel.MovieViewModelFactory
+import ru.padawans.features.utils.viewModels
 
 
 class MovieFragment : Fragment(R.layout.movie_fragment) {
     private val TAG: String = "MovieFragment"
     private var movieId: Int = -1
 
-    private lateinit var mMovieFragmentViewModel: MovieFragmentViewModel
+
     private lateinit var mTrailersAdapter: TrailersAdapter
     private val mReviewsAdapter = ReviewsAdapter()
     private val mSimilarAdapter = MainMoviesAdapter(::onItemClick)
@@ -35,6 +37,9 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
     private lateinit var castsView: CastsView
 
     var errorDialog: AlertDialog? = null
+
+    private val provider by lazy { (this.activity?.application as MainDependencyProvider).getDataProvider }
+    private val mMovieFragmentViewModel: MovieFragmentViewModel by viewModels { MovieFragmentViewModel(provider,movieId) }
 
 
     companion object {
@@ -62,11 +67,6 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         if (arguments?.getInt(MOVIE_ID) != null) {
             movieId = arguments!!.getInt(MOVIE_ID)
         }
-
-        mMovieFragmentViewModel =
-            ViewModelProvider(this, MovieViewModelFactory(movieId)).get(
-                MovieFragmentViewModel::class.java
-            )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

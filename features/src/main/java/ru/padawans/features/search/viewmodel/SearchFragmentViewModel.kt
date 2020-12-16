@@ -7,16 +7,19 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import ru.padawans.domain.model.search.Movie
-import ru.padawans.data.search.SearchRepositoryImpl
+import ru.padawans.domain.di.DataProvider
+import ru.padawans.domain.repository.SearchRepository
 
 
-class SearchFragmentViewModel : ViewModel() {
+class SearchFragmentViewModel(
+    provider: DataProvider,
+    private val repository: SearchRepository = provider.getSearchRepository()
+) : ViewModel() {
 
     private var currentQueryValue: String? = null
     private var currentSearchResult: Flow<PagingData<Movie>>? = null
 
     val liveData = MutableLiveData<List<Movie>>()
-    val repository = SearchRepositoryImpl()
 
     fun movieListSearch(query: String): Flow<PagingData<Movie>> {
         val lastResult = currentSearchResult

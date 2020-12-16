@@ -24,7 +24,7 @@ companion object{
     fun bind(result: MovieGeneralInfo) {
         itemView.upcoming_recycler_tv.text = result.title
         // w300 размер изображения https://developers.themoviedb.org/3/getting-started/images
-        val imageUrl: String = BuildConfig.BASE_IMG_URL + "w780" + result.posterPath
+        val imageUrl: String = result.posterPath
         itemView.ratingBar.rating = result.voteAverage.toFloat()/2
         itemView.vote_count_tv.text = result.voteCount.toString() +" " +  itemView.context.resources.getString(R.string.reviews)
         itemView.release_date.text = result.releaseDate

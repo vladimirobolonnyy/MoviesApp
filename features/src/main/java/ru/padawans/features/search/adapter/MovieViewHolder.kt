@@ -63,9 +63,8 @@ class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     fun ImageView.downloadAndSetImage(path: String?) {
-        val url = BuildConfig.BASE_IMG_URL + "w342" + path
         Picasso.get()
-            .load(url)
+            .load(path)
             .resize(120, 180)
             .centerCrop()
             .placeholder(R.drawable.ic_block)

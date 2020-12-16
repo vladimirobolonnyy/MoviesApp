@@ -2,6 +2,8 @@ package ru.padawans.network.model.main
 
 import com.google.gson.annotations.SerializedName
 import ru.padawans.domain.model.main.MovieGeneralInfo
+import ru.padawans.network.BuildConfig
+import ru.padawans.network.model.getPosterPath
 
 
 class MovieGeneralInfoDto(
@@ -22,11 +24,13 @@ class MovieGeneralInfoDto(
     @SerializedName("release_date") val releaseDate: String?
 ) {
     fun convert(): MovieGeneralInfo {
+        val validPosterPath = getPosterPath(posterPath)
+
         return MovieGeneralInfo(
             popularity ?: 0.0,
             voteCount ?: 0,
             video!!,
-            posterPath ?: "N/A",
+            validPosterPath,
             id ?: 0,
             adult!!,
             backdropPath ?: "N/A",

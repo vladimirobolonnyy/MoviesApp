@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.main_fragment.*
 import ru.padawans.domain.ContentTypes
+import ru.padawans.domain.di.MainDependencyProvider
 import ru.padawans.features.R
 import ru.padawans.features.ToolbarActivity
 import ru.padawans.features.main.adapter.MainMoviesAdapter
 import ru.padawans.features.main.adapter.ViewPagerAdapter
-import ru.padawans.features.main.viewmodel.MainFragmentViewModel
+import ru.padawans.features.main.viewmodel.MainViewModel
 import ru.padawans.features.movie.view.MovieFragment
+import ru.padawans.features.utils.viewModels
 
 
 class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefreshListener {
@@ -26,7 +28,10 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
     private val mUpcomingAdapter = MainMoviesAdapter(::onItemClick)
     private val mNowPlayingMoviesAdapter = MainMoviesAdapter(::onItemClick)
     private val mTrendingMoviesAdapter = MainMoviesAdapter(::onItemClick)
-    private lateinit var mMainFragmentViewModel: MainFragmentViewModel
+
+
+    private val provider by lazy { (this.activity?.application as MainDependencyProvider).getDataProvider }
+    private val mMainViewModel: MainViewModel by viewModels { MainViewModel(provider) }
 
 
     var errorDialog: AlertDialog? = null
@@ -37,14 +42,6 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as? ToolbarActivity)?.hideToolbar()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mMainFragmentViewModel =
-            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-                MainFragmentViewModel::class.java
-            )
     }
 
 
@@ -106,7 +103,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
 
 
     private fun upcomingRecyclerInit() {
-        mMainFragmentViewModel.upcomingData.observe(
+        mMainViewModel.upcomingData.observe(
             viewLifecycleOwner,
             Observer {
                 if (it != null) {
@@ -116,7 +113,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
     }
 
     private fun nowPlayingRecyclerInit() {
-        mMainFragmentViewModel.nowPlayingData.observe(
+        mMainViewModel.nowPlayingData.observe(
             viewLifecycleOwner,
             Observer {
                 if (it != null) {
@@ -126,7 +123,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
     }
 
     private fun trendingRecyclerInit() {
-        mMainFragmentViewModel.trendingData.observe(
+        mMainViewModel.trendingData.observe(
             viewLifecycleOwner,
             Observer {
                 if (it != null) {
@@ -137,11 +134,11 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
 
 
     private fun onItemClick(movieId: Int) {
-        mMainFragmentViewModel.onCardClick(movieId)
+        mMainViewModel.onCardClick(movieId)
     }
 
     private fun openMovieFragment() {
-        mMainFragmentViewModel.movieId.observe(viewLifecycleOwner, Observer {
+        mMainViewModel.movieId.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "onItemClicked: " + it)
             val current = parentFragmentManager.findFragmentById(R.id.container)
             parentFragmentManager.beginTransaction()
@@ -164,7 +161,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
                     totalItemCount = recyclerView.layoutManager?.itemCount!!
                     pastVisiblesItems =
                         (recyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
-                         mMainFragmentViewModel.loadOnScroll(
+                         mMainViewModel.loadOnScroll(
                              pastVisiblesItems,
                              visibleItemCount,
                              totalItemCount,
@@ -177,13 +174,13 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
     }
 
     private fun hideRefresh() {
-        mMainFragmentViewModel.refreshState.observe(viewLifecycleOwner, Observer {
+        mMainViewModel.refreshState.observe(viewLifecycleOwner, Observer {
             swipeRefresh.post { swipeRefresh.isRefreshing = it }
         })
     }
 
     private fun showError() {
-        mMainFragmentViewModel.error.observe(viewLifecycleOwner, Observer {
+        mMainViewModel.error.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "showError: ")
             if (errorDialog == null) {
                 val alertDialog = AlertDialog.Builder(requireContext())
@@ -208,6 +205,6 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
         mUpcomingAdapter.removeAll()
         mTrendingMoviesAdapter.removeAll()
         mNowPlayingMoviesAdapter.removeAll()
-        mMainFragmentViewModel.refreshAll()
+        mMainViewModel.refreshAll()
     }
 }
