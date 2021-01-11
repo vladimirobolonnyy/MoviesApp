@@ -7,7 +7,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -106,9 +105,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
         mMainViewModel.upcomingData.observe(
             viewLifecycleOwner,
             Observer {
-                if (it != null) {
-                    mUpcomingAdapter.updateData(it.first,it.second,it.third)
-                }
+                    mUpcomingAdapter.updateData(it)
             })
     }
 
@@ -116,9 +113,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
         mMainViewModel.nowPlayingData.observe(
             viewLifecycleOwner,
             Observer {
-                if (it != null) {
-                    mNowPlayingMoviesAdapter.updateData(it.first,it.second,it.third)
-                }
+                    mNowPlayingMoviesAdapter.updateData(it)
             })
     }
 
@@ -126,9 +121,7 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
         mMainViewModel.trendingData.observe(
             viewLifecycleOwner,
             Observer {
-                if (it != null) {
-                    mTrendingMoviesAdapter.updateData(it.first,it.second,it.third)
-                }
+                    mTrendingMoviesAdapter.updateData(it)
             })
     }
 
@@ -161,12 +154,12 @@ class MainFragment : Fragment(R.layout.main_fragment), SwipeRefreshLayout.OnRefr
                     totalItemCount = recyclerView.layoutManager?.itemCount!!
                     pastVisiblesItems =
                         (recyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
-                         mMainViewModel.loadOnScroll(
-                             pastVisiblesItems,
-                             visibleItemCount,
-                             totalItemCount,
-                             contentType
-                         )
+                    mMainViewModel.loadOnScroll(
+                        pastVisiblesItems,
+                        visibleItemCount,
+                        totalItemCount,
+                        contentType
+                    )
                 }
             }
         }

@@ -32,6 +32,7 @@ class MovieFragmentViewModel(
 
     private val _similarData = MutableLiveData<List<MovieGeneralInfo>>()
     val similarData = _similarData
+    private val newSimilar = mutableListOf<MovieGeneralInfo>()
 
     private val _castData = MutableLiveData<CastsModel>()
     val castData = _castData
@@ -98,7 +99,8 @@ class MovieFragmentViewModel(
                 val similar = movieInfoRepository.getSimilar(movieId, page)
                 Log.d("Main", "getSimilar: " + page)
                 totalSimilarPage = similar.totalPages
-                _similarData.value = similar.results
+                newSimilar.addAll(similar.results)
+                _similarData.value = newSimilar
             } catch (e: Exception) {
                 _error.value = ErrorMessage.getErrorMessage(e)
             }
@@ -171,7 +173,7 @@ class MovieFragmentViewModel(
         similarPage = 1
         totalSimilarPage = 0
         totalReviewPage = 0
-
+        newSimilar.clear()
         getDetails(movieId)
         getTrailers(movieId)
         getCast(movieId)

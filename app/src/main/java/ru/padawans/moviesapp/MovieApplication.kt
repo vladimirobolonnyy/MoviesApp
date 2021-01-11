@@ -12,7 +12,6 @@ import ru.padawans.domain.di.MainDependencyProvider
 
 class MovieApplication: Application(),MainDependencyProvider {
 
-
     override fun onCreate() {
         super.onCreate()
         val db = Room.databaseBuilder(

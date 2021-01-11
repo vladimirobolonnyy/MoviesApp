@@ -33,21 +33,23 @@ companion object{
             itemView.adult_marker_tv.visibility = View.VISIBLE
         }
 
-
-            Picasso.get()
-                .load(imageUrl)
-                .placeholder(R.drawable.ic_block)
-                .error(R.drawable.ic_block)
-                .centerCrop()
-                .resize(300, 700)
-                .transform(
-                    RoundedCornersTransformation(
-                        15,
-                        0,
-                        RoundedCornersTransformation.CornerType.TOP
+            if (imageUrl.isNotEmpty()){
+                Picasso.get()
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_block)
+                    .error(R.drawable.ic_block)
+                    .centerCrop()
+                    .resize(300, 700)
+                    .transform(
+                        RoundedCornersTransformation(
+                            15,
+                            0,
+                            RoundedCornersTransformation.CornerType.TOP
+                        )
                     )
-                )
-                .into(itemView.upcoming_recycler_iv)
+                    .into(itemView.upcoming_recycler_iv)
+            }
+
 
 
 

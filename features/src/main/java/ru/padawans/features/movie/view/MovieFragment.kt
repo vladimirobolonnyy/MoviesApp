@@ -99,7 +99,7 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         setInfo(infoView)
         setTrailers(trailers_recycler)
         setReviews()
-        setSimilar(similarView)
+        setSimilar()
         setCasts(castsView)
         openMovieFragment()
         showError()
@@ -158,9 +158,9 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         similarView.addOnScrollListener(recyclerScrollListener(SIMILAR))
     }
 
-    private fun setSimilar(similarView: RecyclerView) {
+    private fun setSimilar() {
         mMovieFragmentViewModel.similarData.observe(viewLifecycleOwner, Observer {
-            mSimilarAdapter.addData(it)
+            mSimilarAdapter.updateData(it)
         })
     }
 
@@ -238,7 +238,7 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         })
     }
 
-     fun onRefresh() {
+     private fun onRefresh() {
         mReviewsAdapter.removeAll()
         mSimilarAdapter.removeAll()
         mTrailersAdapter.removeAll()

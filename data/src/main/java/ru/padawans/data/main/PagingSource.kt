@@ -93,6 +93,7 @@ class PagingSource(
         return when (contentType) {
             ContentTypes.UPCOMING -> {
                 movieApi.getUpcomingMovies("en-us", page)
+                //   movieApi.getNowPlayingMovies("en-us", page)
             }
             ContentTypes.TRENDING -> {
                 movieApi.getTrendingMovie(page)
