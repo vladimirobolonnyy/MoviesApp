@@ -14,33 +14,28 @@ class MainMoviesRepositoryImpl(
     private val pagingSource: PagingSource = PagingSource(contentType)
 ) : MainMoviesRepository {
 
-     override var updateData:Boolean = false
-
     override fun getMainMovies(
         page: Int
-    ): Flow<List<MovieGeneralInfo>> {
+    ): Flow<Pair<List<MovieGeneralInfo>,Boolean>> {
         Log.d("TAG", "getUpcomingMovies: ")
-          return flow<List<MovieGeneralInfo>> {
+          return flow<Pair<List<MovieGeneralInfo>,Boolean>> {
             val cache = pagingSource.dataFromCache(page)
             if (cache != null) {
-                emit(cache)
+                emit(Pair(cache,false))
             } else {
                 val database = pagingSource.dataFromDatabase(page)
                 if (database.isNotEmpty()) {
-                    emit(database)
+                    emit(Pair(database,false))
                     val validData = pagingSource.isDataInDatabaseValid(page)
                     if (validData.isNotEmpty()) {
-                        updateData = true
-                        emit(validData)
+                        emit(Pair(validData,true))
                     }
                 } else {
-                    emit(pagingSource.dataFromServer(page))
+                    emit(Pair(pagingSource.dataFromServer(page),false))
                 }
             }
         }.flowOn(
             Dispatchers.IO
-        ).onCompletion {
-              updateData = false
-          }
+        )
     }
 }

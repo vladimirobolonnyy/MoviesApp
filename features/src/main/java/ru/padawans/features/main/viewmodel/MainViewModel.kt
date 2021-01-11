@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import ru.padawans.domain.model.main.MovieGeneralInfo
 import ru.padawans.domain.ContentTypes
 import ru.padawans.domain.di.DataProvider
+import ru.padawans.domain.model.movie.details.MovieDetails
 import ru.padawans.domain.repository.MainMoviesRepository
 import ru.padawans.features.ErrorMessage
 
@@ -25,7 +26,6 @@ class MainViewModel(
     val upcomingData = _upcomingData
     private val newUpcoming = mutableListOf<MovieGeneralInfo>()
     private val lastUpcoming = mutableListOf<MovieGeneralInfo>()
-
 
     private val _nowPlayingData = MutableLiveData<List<MovieGeneralInfo>>()
     val nowPlayingData = _nowPlayingData
@@ -63,16 +63,15 @@ class MainViewModel(
                 Log.d("TAG", "loadUpcomingMovies: " + "No internet " + it.javaClass.name)
                 _error.value = ErrorMessage.getErrorMessage(it)
             }.collect {
-                if (!it.isNullOrEmpty()) {
-                    if (mainMoviesRepository.updateData){
+                if (!it.first.isNullOrEmpty()) {
+                    if (it.second){
                       newUpcoming.removeAll(lastUpcoming)
                     }
 
-                    newUpcoming.addAll(it)
+                    newUpcoming.addAll(it.first)
                     lastUpcoming.clear()
-                    lastUpcoming.addAll(it)
+                    lastUpcoming.addAll(it.first)
                     _upcomingData.value = newUpcoming
-
                 } else {
                     if (totalUpcomingPages == 0) {
                         totalUpcomingPages = page - 1
@@ -87,16 +86,15 @@ class MainViewModel(
             trendingRepository.getMainMovies(page).catch {
                 _error.value = ErrorMessage.getErrorMessage(it)
             }.collect {
-                if (!it.isNullOrEmpty()) {
-                    if (trendingRepository.updateData){
+                if (!it.first.isNullOrEmpty()) {
+                    if (it.second){
                         newTrending.removeAll(lastTrending)
                     }
-                    newTrending.addAll(it)
+                    newTrending.addAll(it.first)
                     lastTrending.clear()
-                    lastTrending.addAll(it)
+                    lastTrending.addAll(it.first)
 
                     _trendingData.value = newTrending
-
                 } else {
                     if (totalTrendingPages == 0) {
                         totalTrendingPages = page - 1
@@ -111,13 +109,13 @@ class MainViewModel(
             nowPlayingRepository.getMainMovies(page).catch {
                 _error.value = ErrorMessage.getErrorMessage(it)
             }.collect {
-                if (!it.isNullOrEmpty()) {
-                    if (nowPlayingRepository.updateData){
+                if (!it.first.isNullOrEmpty()) {
+                    if (it.second){
                         newNowPlaying.removeAll(lastNowPlaying)
                     }
-                    newNowPlaying.addAll(it)
+                    newNowPlaying.addAll(it.first)
                     lastNowPlaying.clear()
-                    lastNowPlaying.addAll(it)
+                    lastNowPlaying.addAll(it.first)
 
                     _nowPlayingData.value = newNowPlaying
                 } else {
@@ -194,11 +192,9 @@ class MainViewModel(
         }
     }
 
-
     fun onCardClick(movieId: Int) {
         _movieId.value = movieId
     }
-
 }
 
 

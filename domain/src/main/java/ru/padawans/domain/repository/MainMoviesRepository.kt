@@ -5,6 +5,5 @@ import ru.padawans.domain.model.main.MovieGeneralInfo
 
 
 interface MainMoviesRepository {
-    fun getMainMovies(page:Int): Flow<List<MovieGeneralInfo>>
-    var updateData:Boolean
+    fun getMainMovies(page:Int): Flow<Pair<List<MovieGeneralInfo>, Boolean>>
 }

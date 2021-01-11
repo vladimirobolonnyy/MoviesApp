@@ -15,6 +15,4 @@ data class MovieGeneralInfo(
     val voteAverage: Double,
     val overview: String,
     val releaseDate: String
-) {
-
-}
+)
